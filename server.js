@@ -27,6 +27,17 @@ app.use(express.json())
 
 
 // -------------------------
+// GET / Read
+app.get('/', async (req, res) => {
+  db.collection('list-items').find().toArray()
+    .then(data => {
+      res.render('index.ejs', { info: data })
+    })
+    .catch(err => console.error(err))
+})
+
+
+// -------------------------
 // Run Server
 app.listen(PORT, _ => {
   console.log(`Server running on port ${PORT}`)
