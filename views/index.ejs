@@ -13,19 +13,28 @@
 <body>
   <h1>Shopping List:</h1>
   <ul class="shopping-items-ul">
-    <% for (let i=0; i < shopping-items.length; i++) { %>
+    <% for (let i=0; i < shoppingItems.length; i++) { %>
       <li class="shopping-item-li">
-        <% if (shopping-items[i].completed === true) { %>
-          <span class="completed"><%= shopping-items[i].item %></span>
+        <% if (shoppingItems[i].completed === true) { %>
+          <span class="completed"><%= shoppingItems[i].groceryItem %></span>
         <% } else { %>
-          <span><%= shopping-items[i].item %></span>
-        }
+          <span><%= shoppingItems[i].groceryItem %></span>
+        <% } %>
         <span class="fa fa-trash"></span>
       </li>
     <% } %>
   </ul>
 
+  <h3>Left to get: <%= remaining %></h3>
 
+  <h2>Add a grocery item:</h2>
+  <form action="/addItem" method="POST">
+    <input type="text" placeholder="Grocery Item" name="groceryItem">
+    <input type="submit">
+  </form>
+
+
+  <script src="js/main.js"></script>
 </body>
 
 </html>

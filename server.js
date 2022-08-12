@@ -29,11 +29,14 @@ app.use(express.json())
 // -------------------------
 // GET / Read
 app.get('/', async (req, res) => {
-  db.collection('list-items').find().toArray()
-    .then(data => {
-      res.render('index.ejs', { info: data })
+  db.collection('list-items').find().toArray() //find ALL documents in the list-items collection, and put them in an array
+    .then(allItems => { //the above array of everything in list-items gets passed through to this ".then" via the "allItems" variable
+        db.collection('list-items').countDocuments({completed: false}) //count the number of incomplete items in the db
+        .then(itemsLeft => { //and pass the above result through to this ".then"
+            res.render('index.ejs', { shoppingItems: allItems, remaining: itemsLeft }) //pass "allItems" (all of the objects that are inside the db) into the .ejs template, under the name "shoppingItems". whenever you see "shoppingItems" in ejs, that's our array of db items!
+        })
     })
-    .catch(err => console.error(err))
+    .catch(error => console.error(error))
 })
 
 
