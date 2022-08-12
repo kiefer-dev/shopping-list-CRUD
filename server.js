@@ -53,6 +53,18 @@ app.post('/addItem', (req, res) => {
 
 
 // -------------------------
+// DELETE / Delete
+app.delete('/deleteItem', (req, res) => {
+  db.collection('list-items').deleteOne({ groceryItem: req.body.groceryItemFromJS })
+    .then(result => {
+      console.log('Item Deleted');
+      res.json('Item Deleted')
+    })
+    .catch(err => console.error(err))
+})
+
+
+// -------------------------
 // Run Server
 app.listen(PORT, _ => {
   console.log(`Server running on port ${PORT}`)
