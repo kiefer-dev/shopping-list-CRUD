@@ -11,7 +11,21 @@
 </head>
 
 <body>
-  <h1>This is a shopping list!</h1>
+  <h1>Shopping List:</h1>
+  <ul class="shopping-items-ul">
+    <% for (let i=0; i < shopping-items.length; i++) { %>
+      <li class="shopping-item-li">
+        <% if (shopping-items[i].completed === true) { %>
+          <span class="completed"><%= shopping-items[i].item %></span>
+        <% } else { %>
+          <span><%= shopping-items[i].item %></span>
+        }
+        <span class="fa fa-trash"></span>
+      </li>
+    <% } %>
+  </ul>
+
+
 </body>
 
 </html>
