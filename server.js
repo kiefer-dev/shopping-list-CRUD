@@ -28,7 +28,7 @@ app.use(express.json())
 
 // -------------------------
 // GET / Read
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   db.collection('list-items').find().toArray() //find ALL documents in the list-items collection, and put them in an array
     .then(allItems => { //the above array of everything in list-items gets passed through to this ".then" via the "allItems" variable
         db.collection('list-items').countDocuments({completed: false}) //count the number of incomplete items in the db
@@ -37,6 +37,18 @@ app.get('/', async (req, res) => {
         })
     })
     .catch(error => console.error(error))
+})
+
+
+// -------------------------
+// POST / Create
+app.post('/addItem', (req, res) => {
+  db.collection('list-items').insertOne({ groceryItem: req.body.groceryItem, completed: false })
+    .then(result => {
+      console.log('Grocery Item Added')
+      res.redirect('/')
+    })
+    .catch(err => console.error(err))
 })
 
 
