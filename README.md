@@ -8,8 +8,8 @@ npm install nodemon --save-dev
 
 
 
-config.env
-  create config folder and config.env in it
+.env
+  create .env file
     DB_STRING = [db connection string from mongodb]
     PORT = [whatever port you want]
-  add config and node_modules to .gitignore
+  add .env and node_modules to .gitignore
