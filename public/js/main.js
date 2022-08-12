@@ -1,6 +1,6 @@
 // HANDLING DELETES:
-// Collect all of the trashcan icons and add event listeners to them to handle the delete
-const deleteButtons = document.querySelectorAll('.fa-trash')
+// Collect all of the red x icons and add event listeners to them to handle the delete
+const deleteButtons = document.querySelectorAll('.fa-times')
 Array.from(deleteButtons).forEach((element => {
   element.addEventListener('click', deleteItem)
 }))
